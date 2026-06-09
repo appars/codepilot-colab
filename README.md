@@ -1,22 +1,19 @@
 # 🤖 CodePilot AI Studio — Google Colab Edition
 
 > **Agentic AI in Software Engineering | Module 4**
-> **Instructor: Prof. Apparsamy Perumal**
+> **Instructor: Prof. Apparsamy Perumal | Semester 5**
 
 ---
 
 ## What Is This?
 
-CodePilot AI Studio is a hands-on teaching project that builds a real
-AI coding assistant — **stage by stage** — using Google Colab.
+CodePilot AI Studio builds a real AI coding assistant **stage by stage** in Google Colab.
 
-**No installation. No admin rights. Just a browser and a free API key.**
+**Zero installation. No admin rights. Works on any browser with a free Groq API key.**
 
-Every stage adds one new capability to the agent:
-
-| Stage | Concept | In Class / Homework |
-|-------|---------|---------------------|
-| Stage 1 | Hello Groq — talk to an LLM | ✅ In Class |
+| Stage | Concept | Session |
+|-------|---------|---------|
+| Stage 1 | Hello Groq — talk to Llama 3 via API | ✅ In Class |
 | Stage 2 | Memory — agent remembers your conversation | ✅ In Class |
 | Stage 3 | Tools — intent routing to specialist skills | ✅ In Class |
 | Stage 4 | RAG — long-term memory with ChromaDB | 📚 Homework |
@@ -27,67 +24,79 @@ Every stage adds one new capability to the agent:
 
 ## ⚡ Before Class — MUST DO (5 minutes)
 
-You need a **free Groq API key** to run these notebooks.
-Do this **before class** on your home WiFi.
+You need a **free Groq API key**. Do this **before class day**.
 
 ### Step 1 — Create a free Groq account
-
-1. Open your browser and go to: **https://console.groq.com**
-2. Click **"Sign Up"** (top right)
-3. Sign up with your **Google account** OR your email
-4. No credit card required — it is completely free
-
-![Groq signup page](https://console.groq.com)
+1. Go to: **https://console.groq.com**
+2. Click **Sign Up** (top right)
+3. Sign up with your Google account or email — **no credit card needed**
 
 ### Step 2 — Create your API Key
-
 1. After logging in, click **"API Keys"** in the left sidebar
-2. Click the **"Create API Key"** button
-3. Give it any name (e.g. `codepilot-class`)
-4. Click **"Submit"**
-5. **COPY the key immediately** — it looks like this:
-   ```
-   gsk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-   ```
-6. Save it somewhere safe (Notepad, Notes app, etc.)
+2. Click **"Create API Key"**
+3. Name it anything (e.g. `codepilot`)
+4. Click **Submit**
+5. **Copy the key immediately** — looks like: `gsk_xxxxxxxxxxxxxxxxxxxx`
+6. Save it in Notepad or your phone Notes
 
-> ⚠️ **Important:** The key is shown only ONCE. If you lose it, create a new one.
+> ⚠️ The key is shown only ONCE. If you lose it, just create a new one — takes 30 seconds.
 
-### Step 3 — Keep your key ready for class
+### Step 3 — Store key in Colab Secrets (saves you typing it every notebook!)
 
-You will paste this key into the first cell of each notebook.
-**Each student must have their own key** — do not share keys.
+> 💡 **Colab Secrets stores your key ONCE and all 6 notebooks find it automatically.**
+
+1. Go to **https://colab.research.google.com**
+2. Open any notebook
+3. Click the **🔑 key icon** in the left sidebar
+4. Click **"Add new secret"**
+5. **Name:** `GROQ_API_KEY` ← must be exactly this
+6. **Value:** paste your key `gsk_xxxx...`
+7. Toggle **"Notebook access"** to **ON**
+8. Done! Every notebook will now find your key automatically
+
+> Each student must use their **own key** — never share keys.
 
 ---
 
-## 🚀 How to Open Notebooks in Google Colab
+## 🚀 How to Open and Run a Notebook
 
-### Method 1 — From GitHub (Recommended)
-
-1. Go to this repository on GitHub
+### Step 1 — Open from GitHub
+1. Go to this repository on **GitHub**
 2. Click on any `.ipynb` file (e.g. `stage1_hello_groq/Stage1_Hello_Groq.ipynb`)
-3. You will see an **"Open in Colab"** button at the top — click it
-4. The notebook opens directly in Google Colab — ready to run!
+3. Click the **orange "Open in Colab" badge** at the top of the file
+4. The notebook opens directly in Google Colab
 
-### Method 2 — Upload manually
+### Step 2 — Run the notebook
+1. **Cell 1 (API Key):** Run it — if you set up Colab Secrets, it loads automatically. If not, paste your key manually between the quotes.
+2. **Cell 2 (Setup):** Run it — installs packages (~30 seconds first time)
+3. **Press Ctrl+F9** to run all remaining cells at once
+4. Read the output below each cell
+5. Try the experiments at the bottom
 
-1. Download this repository as a ZIP file from GitHub
-2. Unzip it on your computer
-3. Go to **https://colab.research.google.com**
-4. Click **File → Upload Notebook**
-5. Select the `.ipynb` file you want to open
+> ⏱ **First run: ~1 minute** (package install). All runs after that: instant.
 
-### How to run a notebook
+---
 
-Once the notebook is open in Colab:
+## 🔑 Two Ways to Add Your API Key
 
-1. **Paste your Groq API key** in Cell 1 (the first code cell)
-2. Press **Ctrl + F9** to run all cells at once
-   OR click the ▶ button on each cell one by one
-3. Read the output below each cell
-4. Try the experiments in the last cells
+### Option A — Colab Secrets (Recommended — set up once, works everywhere)
 
-> ⏱ **First run takes ~1 minute** to install packages. After that, it is instant.
+| Step | What to do |
+|------|-----------|
+| 1 | Click the 🔑 key icon in the Colab left sidebar |
+| 2 | Click "Add new secret" |
+| 3 | Name: `GROQ_API_KEY` |
+| 4 | Value: paste your `gsk_xxxx...` key |
+| 5 | Toggle "Notebook access" ON |
+| Done! | All 6 notebooks load your key automatically |
+
+### Option B — Paste manually (quick fallback)
+
+If Secrets is not set up, find this line in Cell 1:
+```python
+GROQ_API_KEY = "paste-your-groq-key-here"
+```
+Replace `paste-your-groq-key-here` with your actual key. Works immediately.
 
 ---
 
@@ -99,7 +108,7 @@ codepilot-colab/
 ├── README.md                          ← this file (start here)
 │
 ├── stage1_hello_groq/
-│   ├── Stage1_Hello_Groq.ipynb        ← Colab notebook
+│   ├── Stage1_Hello_Groq.ipynb        ← Colab notebook (click Open in Colab)
 │   └── Stage1_README.md               ← detailed concept guide
 │
 ├── stage2_memory_agent/
@@ -125,51 +134,48 @@ codepilot-colab/
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Tech Stack — All Free
 
-| Tool | Purpose | Free? |
-|------|---------|-------|
-| Google Colab | Browser-based Python environment | ✅ Free |
-| Groq API | Fast LLM inference (Llama 3) | ✅ Free |
-| LangChain | AI agent framework | ✅ Open source |
-| ChromaDB | Vector database for RAG (Stage 4) | ✅ Open source |
-| HuggingFace | Text embeddings for RAG (Stage 4) | ✅ Open source |
-| LangGraph | Graph-based agent workflow (Stage 6) | ✅ Open source |
+| Tool | Purpose |
+|------|---------|
+| Google Colab | Browser-based Python — no install needed |
+| Groq API | Fast LLM cloud service (free tier) |
+| Llama 3.1 8B | Open-source AI model by Meta |
+| LangChain | Python AI agent framework |
+| ChromaDB | Vector database for RAG (Stage 4) |
+| HuggingFace Embeddings | Text-to-vector conversion (Stage 4) |
+| LangGraph | Graph-based workflow (Stage 6) |
 
 ---
 
 ## ❓ Troubleshooting
 
+### "Key not found in Secrets / AuthenticationError"
+Your GROQ_API_KEY is wrong or Secrets not set up.
+Go to https://console.groq.com → create a fresh key → add to Secrets OR paste manually.
+
+### "Notebook access is OFF in Secrets"
+Click the 🔑 icon → find GROQ_API_KEY → toggle Notebook access to ON → re-run Cell 1.
+
+### "ModuleNotFoundError"
+Run Cell 2 (the pip install cell) again. Sometimes Colab resets between sessions.
+
+### "Session expired"
+Colab sessions expire after ~12 hours. Re-open the notebook and run from Cell 1.
+Your Groq key in Secrets is still there — no need to add it again.
+
 ### "I lost my Groq API key"
-Go to https://console.groq.com → API Keys → Create a new one. Takes 30 seconds.
-
-### "The notebook says ModuleNotFoundError"
-Run the Setup cell again (Cell 2). Sometimes Colab resets between sessions.
-
-### "My response is very slow"
-Groq should be fast (1-3 seconds). If slow, check your internet connection.
-Make sure you are using the Groq key, not Ollama.
-
-### "AuthenticationError or Invalid API Key"
-Your API key is wrong or has a typo.
-Go to https://console.groq.com and create a fresh key.
-Copy it carefully — no extra spaces.
-
-### "The notebook session expired"
-Colab sessions expire after ~12 hours of inactivity.
-Just re-open the notebook and run from Cell 1 again.
-Your Groq key works in the new session too.
+Go to https://console.groq.com → API Keys → Create a new one → update Secrets value.
 
 ---
 
 ## 📊 What You Will Build
 
 By Stage 6 you will have built a complete AI coding assistant that can:
-
-- Talk to a fast cloud LLM (Groq + Llama 3)
+- Talk to a fast cloud LLM (Groq + Llama 3.1)
 - Remember your full conversation across multiple turns
 - Detect what you want (debug / explain / review) automatically
-- Retrieve relevant past knowledge before answering (RAG)
+- Retrieve relevant knowledge before answering (RAG)
 - Critique and improve its own output (reflection)
 - Execute a stateful workflow with loops and branching (LangGraph)
 
@@ -179,6 +185,7 @@ By Stage 6 you will have built a complete AI coding assistant that can:
 
 Built for **Agentic AI Software Development — Module 4**
 Department of Computer Science & Engineering | Semester 5
+**Prof. Apparsamy Perumal**
 
 Tech: [Groq](https://groq.com) · [LangChain](https://langchain.com) ·
 [LangGraph](https://langchain-ai.github.io/langgraph/) ·
