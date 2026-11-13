@@ -1,4 +1,4 @@
-# 🤖 CodePilot AI Studio — Google Colab Edition
+# 🤖 CodePilot AI Studio — Google Colab Edition - Release 1
 
 > **Agentic AI in Software Engineering | Module 4**
 > **Instructor: Prof. Apparsamy Perumal | Semester 5**
